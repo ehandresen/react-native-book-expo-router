@@ -2,7 +2,7 @@ import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 
 type PostFormProps = {
-  handleForm: () => void;
+  handleForm: (title: string, description: string, hashtags: string) => void;
 };
 
 const PostForm = ({ handleForm }: PostFormProps) => {
@@ -48,7 +48,10 @@ const PostForm = ({ handleForm }: PostFormProps) => {
       </View>
 
       {/* TODO handlepress */}
-      <Button title="add post" onPress={() => handleForm} />
+      <Button
+        title="add post"
+        onPress={() => handleForm(title, description, hashtags)}
+      />
     </View>
   );
 };

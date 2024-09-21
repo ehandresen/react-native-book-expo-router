@@ -5,12 +5,16 @@ import {
   StyleSheet,
   Pressable,
   StatusBar,
+  FlatList,
 } from 'react-native';
 import React, { useEffect } from 'react';
-import { Link, Stack, useNavigation } from 'expo-router';
+import { useNavigation } from 'expo-router';
+import { Post } from '@/types/post';
+import { usePosts } from '@/context/postContext';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const { posts } = usePosts();
 
   //   As an alternative to the <Stack.Screen> component, you can use navigation.setOptions() to configure a route's options from within the route's component file.
   useEffect(() => {
@@ -21,9 +25,11 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <Text>HomeScreen</Text>
-      {/* <Link href="/settings" asChild>
-        <Button title="settings" />
-      </Link> */}
+      <FlatList
+        data={posts}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <Text>{item.title}</Text>}
+      />
     </View>
   );
 };

@@ -3,12 +3,25 @@ import { Tabs } from 'expo-router';
 import { FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity, Text, Modal } from 'react-native';
 import PostForm from '@/components/PostForm';
+import { Post } from '@/types/post';
+import HomeScreen from '.';
+import { usePosts } from '@/context/postContext';
 
 const TabLayout = () => {
+  const { posts, setPosts } = usePosts();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // TODO handleform
-  const handleForm = () => {};
+  const handleForm = (title: string, description: string, hashtags: string) => {
+    const newPost: Post = {
+      id: Math.random().toString(),
+      title,
+      description,
+      hashtags,
+    };
+
+    setPosts((prevPosts) => [...prevPosts, newPost]);
+  };
 
   // TODO add asyncstorage in utils
 
