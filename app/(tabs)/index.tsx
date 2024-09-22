@@ -29,8 +29,10 @@ const HomeScreen = () => {
         data={posts}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
+          //  TODO make each todo clickable? Pressable
           <View style={styles.post}>
             <Text style={styles.title}>{item.title}</Text>
+            {/* TODO add style for text? */}
             <Text>{item.description}</Text>
             <Text style={styles.hashtags}>{item.hashtags}</Text>
           </View>
