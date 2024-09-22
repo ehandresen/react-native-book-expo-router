@@ -15,9 +15,9 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
   const [posts, setPosts] = useState<Post[]>([
     {
       id: '1',
-      title: 'hello',
-      description: 'test',
-      hashtags: '1',
+      title: 'title',
+      description: 'some descriptive text',
+      hashtags: '#hashtags #summer',
     },
   ]);
 

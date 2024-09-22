@@ -28,7 +28,13 @@ const HomeScreen = () => {
       <FlatList
         data={posts}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
+        renderItem={({ item }) => (
+          <View style={styles.post}>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text>{item.description}</Text>
+            <Text style={styles.hashtags}>{item.hashtags}</Text>
+          </View>
+        )}
       />
     </View>
   );
@@ -36,6 +42,20 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
+  post: {
+    padding: 10,
+    borderWidth: 1,
+    marginBottom: 10,
+    gap: 10,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textTransform: 'capitalize',
+  },
+  hashtags: {
+    color: 'grey',
+  },
 });
 
 export default HomeScreen;
