@@ -6,12 +6,12 @@ import PostForm from '@/components/PostForm';
 import { Post } from '@/types/post';
 import HomeScreen from '.';
 import { usePosts } from '@/context/postContext';
+import { storeData } from '@/utils/asyncStorage';
 
 const TabLayout = () => {
   const { posts, setPosts } = usePosts();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  // TODO handleform
   const handleForm = (title: string, description: string, hashtags: string) => {
     const newPost: Post = {
       id: Math.random().toString(),
@@ -20,10 +20,10 @@ const TabLayout = () => {
       hashtags,
     };
 
+    storeData('test', title);
+
     setPosts((prevPosts) => [...prevPosts, newPost]);
   };
-
-  // TODO add asyncstorage in utils
 
   return (
     <>

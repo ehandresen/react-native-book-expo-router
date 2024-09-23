@@ -11,10 +11,21 @@ import React, { useEffect } from 'react';
 import { useNavigation } from 'expo-router';
 import { Post } from '@/types/post';
 import { usePosts } from '@/context/postContext';
+import { getData, storeData } from '@/utils/asyncStorage';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   const { posts } = usePosts();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData('test');
+      if (data) {
+        console.log(data);
+      }
+    };
+    fetchData();
+  }, [posts]);
 
   //   As an alternative to the <Stack.Screen> component, you can use navigation.setOptions() to configure a route's options from within the route's component file.
   useEffect(() => {
@@ -45,6 +56,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   post: {
+    margin: 10,
     padding: 10,
     borderWidth: 1,
     marginBottom: 10,

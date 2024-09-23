@@ -1,20 +1,22 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const storeData = async (value: any) => {
+export const storeData = async (key: string, data: string) => {
   try {
     // convert the object to a string, because asyncstorage can only store string data
-    const json = JSON.stringify(value);
-    await AsyncStorage.setItem('my-key', value);
-  } catch (e) {}
+    // const json = JSON.stringify(value);
+    await AsyncStorage.setItem(key, data);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
-export const getData = async (): Promise<any> => {
+export const getData = async (key: string): Promise<any> => {
   try {
-    const data = await AsyncStorage.getItem('my-key');
+    const data = await AsyncStorage.getItem(key);
 
     // if there is data found in the stored key, return it
-    if (data) {
-      return JSON.parse(data);
-    }
-  } catch (e) {}
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
 };

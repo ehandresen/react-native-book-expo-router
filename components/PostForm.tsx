@@ -47,7 +47,6 @@ const PostForm = ({ handleForm }: PostFormProps) => {
         </View>
       </View>
 
-      {/* TODO handlepress */}
       <Button
         title="add post"
         onPress={() => handleForm(title, description, hashtags)}
